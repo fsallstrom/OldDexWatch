@@ -1,0 +1,29 @@
+<strings>
+    <string id="AppName">Dex Watch</string>
+	<string id="UsernameTitle">Dexcom Username</string>
+	<string id="PasswordTitle">Dexcom Password</string>
+	<string id="BgHighTitle">High Alert</string>
+	<string id="BgLowTitle">Low Alert</string>	
+	<string id="AlarmTitle">Enable Alarms</string>	
+	
+	<string id="EUserver">EU</string>
+    <string id="USserver">US</string>
+	<string id="mg">mg/dl</string>
+    <string id="mmol">mmol/l</string>
+    <string id="ServerTitle">Dexcom Server (EU or US)</string>
+    <string id="UnitTitle">Unit</string>
+    
+    <string id="bg_60">3,3 mmol | 60 mg/dl</string>
+    <string id="bg_70">3,9 mmol | 70 mg/dl</string>
+    <string id="bg_80">4,4 mmol | 80 mg/dl</string>
+    <string id="bg_90">5,0 mmol | 90 mg/dl </string>
+    <string id="bg_100">5,6 mmol | 100 mg/dl</string>
+    <string id="bg_170">9,4 mmol | 170 mg/dl</string>
+    <string id="bg_180">10,0 mmol | 180 mg/dl</string>
+    <string id="bg_190">10,5 mmol | 190 mg/dl</string>
+    <string id="bg_200">11,1 mmol | 200 mg/dl</string>
+    <string id="bg_220">12,2 mmol | 220 mg/dl</string>
+   
+   <string id="menu_label_1">Label 1</string>
+   <string id="menu_label_2">Label 2</string>
+</strings>
