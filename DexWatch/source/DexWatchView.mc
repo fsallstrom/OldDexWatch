@@ -1,6 +1,6 @@
 using Toybox.WatchUi;
-//using CGM.Dexcom as Dexcom;
-using CGM as Dexcom;
+using CGM.Dexcom as Dexcom;
+//using CGM as Dexcom;
 using Toybox.System as Sys;
 using Toybox.Lang as Lang;
 using Toybox.Timer as Timer;

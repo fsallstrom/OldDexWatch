@@ -23,16 +23,6 @@ class DexWatchApp extends Application.AppBase {
     function initialize() {
         AppBase.initialize();
          
-        
-        //frsal debug
-        
-       /* m_unit = 0;
-        m_username = "parjones1";
-        m_password = "Ellen123";
-       	m_server = "shareous1.dexcom.com";
-       	m_alarm = false;
-       	m_bgHigh = 200;
-       	m_bgLow = 80; */
        	
         // Load user settings here
      	m_unit = App.getApp().getProperty("Unit");
@@ -47,6 +37,15 @@ class DexWatchApp extends Application.AppBase {
         m_alarm = App.getApp().getProperty("Alarm");
         m_bgHigh = App.getApp().getProperty("BgHigh");
         m_bgLow = App.getApp().getProperty("BgLow");
+    
+    	//frsal debug
+        m_unit = 0;
+        m_username = "fsallstrom";
+        m_password = "Saknonlaa1";
+       	m_server = "shareous1.dexcom.com";
+       	m_alarm = false;
+       	m_bgHigh = 200;
+       	m_bgLow = 80; 
     
     	Sys.println("Account: " + m_username + " | pwd: " + m_password + " | Unit: " + m_unit + " | server: " + m_server + " | Alarms: " + m_alarm + " | High Alert: " + m_bgHigh + " | Low Alert: " + m_bgLow);
     }
