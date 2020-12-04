@@ -91,8 +91,7 @@ class DexWatchView extends WatchUi.View {
         
         //calculate elapsed time since sample
         if ((m_dexcomData != null) && m_dexcomData.hasKey("Etime") && m_dexcomData["Etime"] != null) { 
-        	var _sampleTime = new Time.Moment(m_dexcomData["Etime"].toFloat() / 1000);
-    		_timeElapsed = (Math.floor(Time.now().subtract(_sampleTime).value() / 60)).format("%d");
+    		_timeElapsed = m_dexcomData["Etime"];
         }
         
         //display Trend bmp
@@ -130,7 +129,7 @@ class DexWatchView extends WatchUi.View {
         		var _errMsg = "";
         		if (m_responseCode == 500) {_errMsg = "Server Error";}
         		else if (m_responseCode == 401) {_errMsg = "Login Error";}
-        		else if (m_responseCode == 201) {_errMsg = "Wait...";}
+        		else if ((m_responseCode == 201) || (m_responseCode == -104)) {_errMsg = "Wait...";}
         		else {_errMsg = "Error " + m_responseCode.toString();}
         		dc.drawText(dc.getWidth() / 2, (dc.getHeight() / 2), Gfx.FONT_MEDIUM, _errMsg, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
         	}
@@ -200,7 +199,6 @@ class DexWatchView extends WatchUi.View {
     	m_responseCode = responseCode;
     	if (m_responseCode == Dexcom.SUCCESS) {
     		m_dexcomData = data;
-    		//Sys.println("Data: " + m_dexcomData);
     	}
     	
     }
