@@ -129,7 +129,7 @@ class DexWatchView extends WatchUi.View {
         		var _errMsg = "";
         		if (m_responseCode == 500) {_errMsg = "Server Error";}
         		else if (m_responseCode == 401) {_errMsg = "Login Error";}
-        		else if ((m_responseCode == 201) || (m_responseCode == -104)) {_errMsg = "Wait...";}
+        		else if ((m_responseCode == 201) || (m_responseCode == -104) || (m_responseCode == -2)) {_errMsg = "Wait...";}
         		else {_errMsg = "Error " + m_responseCode.toString();}
         		dc.drawText(dc.getWidth() / 2, (dc.getHeight() / 2), Gfx.FONT_MEDIUM, _errMsg, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
         	}
