@@ -2,9 +2,10 @@
     <string id="AppName">Dex Watch</string>
 	<string id="UsernameTitle">Dexcom Username</string>
 	<string id="PasswordTitle">Dexcom Password</string>
-	<string id="BgHighTitle">High Alert</string>
+	<!--<string id="BgHighTitle">High Alert</string>
 	<string id="BgLowTitle">Low Alert</string>	
 	<string id="AlarmTitle">Enable Alarms</string>	
+	<string id="SnoozeTimeTitle">Snooze Time</string>	-->
 	
 	<string id="EUserver">EU</string>
     <string id="USserver">US</string>
@@ -23,6 +24,11 @@
     <string id="bg_190">10,5 mmol | 190 mg/dl</string>
     <string id="bg_200">11,1 mmol | 200 mg/dl</string>
     <string id="bg_220">12,2 mmol | 220 mg/dl</string>
+    
+ <!--  <string id="30min">30 mins</string>
+    <string id="60min">1 hour</string>
+    <string id="90min">1 hour 30 mins</string>
+    <string id="120min">2 hours</string>-->
    
    <string id="menu_label_1">Label 1</string>
    <string id="menu_label_2">Label 2</string>

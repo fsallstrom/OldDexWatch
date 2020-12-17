@@ -9,6 +9,7 @@ using Toybox.Graphics as Gfx;
 using Toybox.Time.Gregorian as Calendar;
 using Toybox.Math;
 
+
 class DexWatchView extends WatchUi.View {
 
 
@@ -34,6 +35,7 @@ class DexWatchView extends WatchUi.View {
 	var m_responseCode = 0;
 	var m_bg = 0;
 
+
     function initialize() {
         View.initialize();
         Dexcom.readLGV(m_username, m_password, m_server, method(:readResponse));
@@ -44,7 +46,7 @@ class DexWatchView extends WatchUi.View {
         m_alarmTimer = new Timer.Timer();
         m_readTimer.start( method(:readLGV), 60*1000, true );    //timer for Dexcom read requests
         m_updateTimer.start( method(:updateUI), 5*1000, true ); //timer for updateing the view
-        m_alarmTimer.start( method(:alarm), 5*60*1000, true ); //timer for alarm, 5 min
+        //m_alarmTimer.start( method(:alarm), 5*60*1000, true ); //timer for alarm, 5 min
         
         
     }
@@ -177,7 +179,12 @@ class DexWatchView extends WatchUi.View {
     	var _dateStr = Calendar.info(_now, Time.FORMAT_MEDIUM).month + " " + Calendar.info(_now, Time.FORMAT_MEDIUM).day;
     	dc.setColor(Gfx.COLOR_LT_GRAY, Gfx.COLOR_BLACK);
     	dc.drawText(dc.getWidth() / 2, DATE_Y, Gfx.FONT_XTINY, _dateStr, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
-    
+    	
+    	//raise alarm if BG is oustise range
+    	/*var _mgdl = m_dexcomData["BG_mgdl"];
+    	if ( (_mgdl != null) && (_mgdl > 0) && (m_alarm) && ((_mgdl <= m_bgLow) || (_mgdl >= m_bgHigh))) {
+    		raiseAlarm();
+    	}*/
     }
         
     // Called when this View is removed from the screen. Save the
@@ -223,20 +230,7 @@ class DexWatchView extends WatchUi.View {
     	return timeString;
     }
     
-    function alarm() {
-    	// beep if BG is outside target, every 5 minutes
-    	if ((m_alarm)  && (m_dexcomData != null) && m_dexcomData.hasKey("BG_mgdl") && m_dexcomData["BG_mgdl"] > 0) {
-    		
-    		var bg = m_dexcomData["BG_mgdl"];
-    		if ((bg <= m_bgLow) || (bg >= m_bgHigh)) {
-    			if (Attention has :playTone) {Attention.playTone(Attention.TONE_LOUD_BEEP);}
-    			if (Attention has :vibrate) {
-    				var vibeData = [new Attention.VibeProfile(50, 5000)]; // On for 5 seconds
-    				Attention.vibrate(vibeData);	
-    			}
-    		}
-    	}
-    }
+   
     
     function setCoordinates(dc) {
     	var height = dc.getHeight();

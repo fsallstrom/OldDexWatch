@@ -1,7 +1,16 @@
 <settings>
     <setting propertyKey="@Properties.Username" title="@Strings.UsernameTitle"><settingConfig type="alphaNumeric" /> </setting>
     <setting propertyKey="@Properties.Password" title="@Strings.PasswordTitle"><settingConfig type="password" /> </setting>
-    <setting propertyKey="@Properties.Alarm" title="@Strings.AlarmTitle"><settingConfig type="boolean" /> </setting>
+  <!--   <setting propertyKey="@Properties.Alarm" title="@Strings.AlarmTitle"><settingConfig type="boolean" /> </setting>
+    
+     <setting propertyKey="@Properties.SnoozeTime" title="@Strings.SnoozeTimeTitle">
+    	<settingConfig type="list">
+    		<listEntry value="30">@Strings.30min</listEntry>
+    		<listEntry value="60">@Strings.60min</listEntry>
+    		<listEntry value="90">@Strings.90min</listEntry>
+    		<listEntry value="120">@Strings.120min</listEntry>
+    	</settingConfig>	
+    </setting> 
     
     <setting propertyKey="@Properties.BgLow" title="@Strings.BgLowTitle">
     	<settingConfig type="list">
@@ -21,7 +30,7 @@
     		<listEntry value="200">@Strings.bg_200</listEntry>
     		<listEntry value="220">@Strings.bg_220</listEntry>
     	</settingConfig>	
-    </setting>
+    </setting>-->
     
     <setting propertyKey="@Properties.Server" title="@Strings.ServerTitle"> 
            <settingConfig type="list">
