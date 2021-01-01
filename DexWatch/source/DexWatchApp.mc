@@ -45,9 +45,9 @@ class DexWatchApp extends Application.AppBase {
     
     	//frsal debug
        /* m_unit = 0;
-        m_username = "fsallstrom";
-        m_password = "Saknonlaa1";
-       	m_server = "shareous1.dexcom.com";
+        m_username = "CharlieCatalano";
+        m_password = "ccdexcom2015";
+       	m_server = "share1.dexcom.com";
        	m_alarm = false;
        	m_bgHigh = 200;
        	m_bgLow = 80; */
