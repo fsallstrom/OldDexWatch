@@ -1,11 +1,10 @@
 <properties>
     <property id="Username" type="string">dexcom_account</property>
     <property id="Password" type="string">dexcom_pwd</property>
-    <property id="Server" type="number">0</property>
+    <!--  <property id="Server" type="number">0</property>  -->
     <property id="Unit" type="number">0</property>
-  <!--   <property id="Alarm" type="boolean">false</property>
-    <property id="BgLow" type="number">80</property>
-    <property id="BgHigh" type="number">200</property>
-    <property id="SnoozeTime" type="number">30</property> -->
+    <property id="Alarm" type="boolean">false</property>
+    <property id="LowAlarm" type="number">100</property>
+    <property id="SnoozeTime" type="number">30</property>
     <property id="UseMilitaryFormat" type="boolean">false</property>
 </properties>

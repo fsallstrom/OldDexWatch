@@ -1,24 +1,47 @@
 using Toybox.WatchUi;
+using Toybox.Application;
 
-class DexWatchDelegate extends WatchUi.BehaviorDelegate {
+class DexWatchDelegate extends WatchUi.InputDelegate {
 
     function initialize() {
-        BehaviorDelegate.initialize();
+   
+         InputDelegate.initialize();
     }
 
-    function onMenu() {
-        WatchUi.pushView(new Rez.Menus.MainMenu(), new DexWatchMenuDelegate(), WatchUi.SLIDE_UP);
-        return true;
+    // Handle key  events
+    function onKey(evt) {
+    	var key = evt.getKey();
+    	var app = Application.getApp();
+    	
+    	if (key == WatchUi.KEY_UP) { 
+    		app.mainView.snooze();
+    	}
+    	else if (key == WatchUi.KEY_DOWN) { 
+    		app.mainView.clear();
+    	}
+    	else {
+    		return false;
+    	}
+    	WatchUi.requestUpdate();
+    	return true;
     }
     
-   /* function onKey(evt) {
-    	var key = evt.getKey();
-    	var keyStr = "";
-    	if (key == KEY_UP) { keyStr = "UP";}
-    	else if (key == KEY_DOWN) { keyStr = "DOWN";}
-    	System.println("Key pressed: " + keyStr);
-    	
+    // Handle swipe events
+    function onSwipe(swipeEvent) {
+        var direction = swipeEvent.getDirection();
+        var app = Application.getApp();
+        
+        if (direction == WatchUi.SWIPE_UP) {
+        	app.mainView.snooze();
+    	}
+    	else if (direction == WatchUi.SWIPE_DOWN) {
+        	app.mainView.clear();
+    	}
+        else {
+    		return false;
+    	}
+    	WatchUi.requestUpdate();
     	return true;
-    }*/
+    }
 
 }

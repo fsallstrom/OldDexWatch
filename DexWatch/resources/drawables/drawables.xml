@@ -10,5 +10,8 @@
     <bitmap id="DoubleDown" filename="downdown.png" />
     <bitmap id="BatteryAlert" filename="battery_alert.png" />
     <bitmap id="BatteryAlertMid" filename="battery_alert_mid.png" />
+    <bitmap id="BatteryAlertSmall" filename="battery_alert_small.png" />   
+    <bitmap id="TriangleUp" filename="blacktriangleUp.png" />
+    <bitmap id="TriangleDown" filename="blacktriangleDown.png" />
     <bitmap id="None" filename="None.png" />
 </drawables>

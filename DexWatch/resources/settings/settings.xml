@@ -1,43 +1,35 @@
 <settings>
     <setting propertyKey="@Properties.Username" title="@Strings.UsernameTitle"><settingConfig type="alphaNumeric" /> </setting>
     <setting propertyKey="@Properties.Password" title="@Strings.PasswordTitle"><settingConfig type="password" /> </setting>
-  <!--   <setting propertyKey="@Properties.Alarm" title="@Strings.AlarmTitle"><settingConfig type="boolean" /> </setting>
+    <setting propertyKey="@Properties.Alarm" title="@Strings.AlarmTitle"><settingConfig type="boolean" /> </setting>
     
-     <setting propertyKey="@Properties.SnoozeTime" title="@Strings.SnoozeTimeTitle">
-    	<settingConfig type="list">
-    		<listEntry value="30">@Strings.30min</listEntry>
-    		<listEntry value="60">@Strings.60min</listEntry>
-    		<listEntry value="90">@Strings.90min</listEntry>
-    		<listEntry value="120">@Strings.120min</listEntry>
-    	</settingConfig>	
-    </setting> 
-    
-    <setting propertyKey="@Properties.BgLow" title="@Strings.BgLowTitle">
+    <setting propertyKey="@Properties.LowAlarm" title="@Strings.LowAlarmTitle">
     	<settingConfig type="list">
     		<listEntry value="60">@Strings.bg_60</listEntry>
     		<listEntry value="70">@Strings.bg_70</listEntry>
     		<listEntry value="80">@Strings.bg_80</listEntry>
     		<listEntry value="90">@Strings.bg_90</listEntry>
     		<listEntry value="100">@Strings.bg_100</listEntry>
+    		<listEntry value="110">@Strings.bg_110</listEntry>
     	</settingConfig>	
     </setting>
     
-    <setting propertyKey="@Properties.BgHigh" title="@Strings.BgHighTitle">
+    <setting propertyKey="@Properties.SnoozeTime" title="@Strings.SnoozeTimeTitle">
     	<settingConfig type="list">
-    		<listEntry value="170">@Strings.bg_170</listEntry>
-    		<listEntry value="180">@Strings.bg_180</listEntry>
-    		<listEntry value="190">@Strings.bg_190</listEntry>
-    		<listEntry value="200">@Strings.bg_200</listEntry>
-    		<listEntry value="220">@Strings.bg_220</listEntry>
+    		<listEntry value="30">@Strings.mins30</listEntry>
+    		<listEntry value="60">@Strings.mins60</listEntry>
+    		<listEntry value="90">@Strings.mins90</listEntry>
+    		<listEntry value="120">@Strings.mins120</listEntry>
     	</settingConfig>	
-    </setting>-->
+    </setting> 
     
-    <setting propertyKey="@Properties.Server" title="@Strings.ServerTitle"> 
+    
+   <!--   <setting propertyKey="@Properties.Server" title="@Strings.ServerTitle"> 
            <settingConfig type="list">
                <listEntry value="0">@Strings.EUserver</listEntry>
                <listEntry value="1">@Strings.USserver</listEntry>
            </settingConfig>
-       </setting>   
+       </setting>   -->
     
     <setting propertyKey="@Properties.Unit" title="@Strings.UnitTitle">
     	<settingConfig type="list">
