@@ -35,12 +35,6 @@ class DexWatchApp extends Application.AppBase {
      	m_unit = App.getApp().getProperty("Unit");
         m_username = App.getApp().getProperty("Username");
         m_password = App.getApp().getProperty("Password");
-        /*if (App.getApp().getProperty("Server") == EU_SERVER) {
-        	m_server = "shareous1.dexcom.com";
-        }
-        else {
-        	m_server = "share1.dexcom.com";
-        }*/
         m_alarm = App.getApp().getProperty("Alarm");
  		m_bgLow = App.getApp().getProperty("LowAlarm");
         m_snoozeTime = App.getApp().getProperty("SnoozeTime");
@@ -74,12 +68,6 @@ class DexWatchApp extends Application.AppBase {
     
     function onSettingsChanged() {
         
-        /*if (App.getApp().getProperty("Server") == EU_SERVER) {
-        	m_server = "shareous1.dexcom.com";
-        }
-        else {
-        	m_server = "share1.dexcom.com";
-        }*/
         m_username = App.getApp().getProperty("Username");
         m_password = App.getApp().getProperty("Password");
         m_unit = App.getApp().getProperty("Unit");

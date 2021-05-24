@@ -55,9 +55,8 @@ class DexWatchView extends Ui.View {
 		m_alarm = false;
         
         View.initialize();
-        //if (System.getDeviceSettings().phoneConnected && !(App.getApp().getProperty("Username").toString().equals("dexcom_account"))) {
         if (System.getDeviceSettings().phoneConnected && !(m_username.equals("dexcom_account"))) {
-        	Dexcom.readLGV(m_username, m_password, method(:readResponse));
+        	Dexcom.readGV(m_username, m_password, method(:readResponse), 1);
         }
         
         m_readTimer = new Timer.Timer();
@@ -96,15 +95,15 @@ class DexWatchView extends Ui.View {
    		}   
         
         //frsal: Use for testing:
-    	//m_elapsedMinutes = 16;
-    	//m_bgMMOL = 15.3;
-    	//m_bgMGDL = 190;
-    	//m_unit = MMOL;
-    	//m_trend = 4;
-       	//m_bgLow = 300; 
-       	//m_snoozeTime = 120;
+    	/*m_elapsedMinutes = 16;
+    	m_bgMMOL = 5.3;
+    	m_bgMGDL = 45;
+    	m_unit = MMOL;
+    	m_trend = 4;
+       	m_bgLow = 300; 
+       	m_snoozeTime = 120;
     	
-    	// end testing
+    	// end testing*/
         
         // Draw bg field
         dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_BLACK);	
@@ -144,7 +143,7 @@ class DexWatchView extends Ui.View {
         }
         
         //draw message field      
-        dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_BLACK); 
+        dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT); 
         
         	// BT Disconnected
         if (!System.getDeviceSettings().phoneConnected) {
@@ -234,7 +233,7 @@ class DexWatchView extends Ui.View {
     	
     	if (m_showAlarmMenu) {
     		// if alarm menu is visible, set snooze time, else do nothing
-    		System.println("snooze for " + m_snoozeTime + " mins");
+    		//System.println("snooze for " + m_snoozeTime + " mins");
     		var _snoozeDuration  = new Time.Duration(m_snoozeTime * 60);
     		var _now = new Time.Moment(Time.now().value());
     		m_snoozeUntil = _now.add(_snoozeDuration);
@@ -254,9 +253,8 @@ class DexWatchView extends Ui.View {
     
     	
     function readLGV() {
-    	//if (System.getDeviceSettings().phoneConnected && !(App.getApp().getProperty("Username").toString().equals("dexcom_account"))) {
     	if (System.getDeviceSettings().phoneConnected && !(m_username.equals("dexcom_account")) ) {
-    		Dexcom.readLGV(m_username, m_password, method(:readResponse));
+    		Dexcom.readGV(m_username, m_password, method(:readResponse), 1);
     	} else {System.println("omitting request");}
     	
     }
@@ -264,10 +262,10 @@ class DexWatchView extends Ui.View {
     function readResponse(data, responseCode) {
     	m_responseCode = responseCode;
     	if (m_responseCode == Dexcom.SUCCESS) {
-    		if (data.hasKey("BG_mmol")) {m_bgMMOL = data["BG_mmol"].toFloat();}
-    		if (data.hasKey("BG_mgdl")) {m_bgMGDL = data["BG_mgdl"].toNumber();}
-    		if (data.hasKey("Trend")) {m_trend = data["Trend"];}
-    		if (data.hasKey("Stime")) {m_sTime = data["Stime"];}
+    		if (data[0].hasKey("BG_mmol")) {m_bgMMOL = data[0]["BG_mmol"].toFloat();}
+    		if (data[0].hasKey("BG_mgdl")) {m_bgMGDL = data[0]["BG_mgdl"].toNumber();}
+    		if (data[0].hasKey("Trend")) {m_trend = data[0]["Trend"];}
+    		if (data[0].hasKey("Stime")) {m_sTime = data[0]["Stime"];}
     		
     		// Raise Alarm if BG below threshold
     		if (m_bgMGDL != 0 &&  m_bgMGDL <= m_bgLow) {
@@ -290,28 +288,28 @@ class DexWatchView extends Ui.View {
     	
     	if (m_prevAlarm == 0) {
     		//1st time, sound alarm
-    		debugPrint("sounding alarm, 1st time");
+    		//debugPrint("sounding alarm, 1st time");
   			_soundAlarm = true;
 				
     	} else if (m_snoozeUntil !=0) {
     		// Previous alarm snoozed, check snooze time
     		if (m_snoozeUntil.lessThan(_now)) {
-    			debugPrint("not snoozed anymore, sound alarm");
+    			//debugPrint("not snoozed anymore, sound alarm");
     			_soundAlarm = true;
     		 	m_snoozeUntil = 0;
     		} else {
-    			debugPrint("Alarm snoozed, silent");
+    			//debugPrint("Alarm snoozed, silent");
     			_soundAlarm = false; 
     		}
     		
     	} else if (_now.greaterThan(m_prevAlarm.add(_fiveMins))) { 
     		// Alarm not snoozed & > 5 mins since last alarm, sound alarm 
-			debugPrint("no longer snoozed, sound alarm");
+			//debugPrint("no longer snoozed, sound alarm");
 			_soundAlarm = true;
 			
     	} else {
     		// less than 5 mins since last alarm, do not sound alarm
-    		debugPrint("no alarm, less than 5 mins");	
+    		//debugPrint("no alarm, less than 5 mins");	
     		_soundAlarm = false;
     	}
     	
@@ -485,6 +483,31 @@ class DexWatchView extends Ui.View {
         	CLEAR_Y = (m_height / 2) + 95;
         	LOW_Y = ALARM_Y + 25;
         }
+        else if (m_width == 360) {
+        	BG_X= (m_width / 2) + 70;
+        	BG_Y= m_height / 4;
+        	BMP_X= (m_width / 2) + 75;
+        	BMP_Y= (m_height / 5);
+        	BAT_X= m_width * 7/10 + 10;
+        	BAT_Y= (m_height / 2) + 45;
+        	TEXT_Y = m_height / 2 - 10;
+        	STRIKE_X= 75;
+        	STRIKE_Y= (m_height / 4) + 7;
+        	STRIKE_LENGTH= (m_width / 3) + 100;
+        	BAR_Y= (m_height / 2) + 25;
+        	TIME_Y= (m_height / 2) + 85;
+        	DATE_Y= (m_height / 2) + 150;
+        	ALARM_Y = (m_height / 2) - 30;
+        	UP_X = 50;
+        	UP_Y = (m_height / 2) + 47;
+        	DOWN_X = 50;
+        	DOWN_Y = (m_height / 2) + 82;
+        	SNOOZE_X = 85;
+        	SNOOZE_Y = (m_height / 2) + 60;
+        	CLEAR_X = 85;
+        	CLEAR_Y = (m_height / 2) + 100;
+        	LOW_Y = ALARM_Y + 30;
+        }
         else if (m_width == 390) {
         	BG_X= (m_width / 2) + 70;
         	BG_Y= m_height / 4;
@@ -498,6 +521,31 @@ class DexWatchView extends Ui.View {
         	STRIKE_LENGTH= (m_width / 3) + 100;
         	BAR_Y= (m_height / 2) + 25;
         	TIME_Y= (m_height / 2) + 75;
+        	DATE_Y= (m_height / 2) + 150;
+        	ALARM_Y = (m_height / 2) - 30;
+        	UP_X = 50;
+        	UP_Y = (m_height / 2) + 47;
+        	DOWN_X = 50;
+        	DOWN_Y = (m_height / 2) + 82;
+        	SNOOZE_X = 85;
+        	SNOOZE_Y = (m_height / 2) + 60;
+        	CLEAR_X = 85;
+        	CLEAR_Y = (m_height / 2) + 100;
+        	LOW_Y = ALARM_Y + 30;
+        }
+        else if (m_width == 416) {
+        	BG_X= (m_width / 2) + 70;
+        	BG_Y= m_height / 4;
+        	BMP_X= (m_width / 2) + 75;
+        	BMP_Y= (m_height / 5);
+        	BAT_X= m_width * 7/10 + 10;
+        	BAT_Y= (m_height / 2) + 45;
+        	TEXT_Y = m_height / 2 - 10;
+        	STRIKE_X= 75;
+        	STRIKE_Y= (m_height / 4);
+        	STRIKE_LENGTH= (m_width / 3) + 100;
+        	BAR_Y= (m_height / 2) + 25;
+        	TIME_Y= (m_height / 2) + 85;
         	DATE_Y= (m_height / 2) + 150;
         	ALARM_Y = (m_height / 2) - 30;
         	UP_X = 50;
