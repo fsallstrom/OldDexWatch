@@ -47,7 +47,7 @@ class DexWatchApp extends Application.AppBase {
        	//m_alarm = true;
        	// end testing
     
-    	Sys.println("Account: " + m_username + " | pwd: " + m_password + " | Unit: " + m_unit + " |  Alarms: " + m_alarm + " | Low Alert: " + m_bgLow);
+    	Sys.println("DexWatch: Account: " + m_username + " | pwd: " + m_password + " | Unit: " + m_unit + " |  Alarms: " + m_alarm + " | Low Alert: " + m_bgLow);
     }
 
     // onStart() is called on application start up

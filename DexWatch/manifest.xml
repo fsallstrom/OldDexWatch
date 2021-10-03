@@ -22,6 +22,10 @@
             <iq:product id="fr935"/>
             <iq:product id="fr945"/>
             <iq:product id="venu"/>
+            <iq:product id="venu2"/>
+            <iq:product id="venu2s"/>
+            <iq:product id="venusq"/>
+            <iq:product id="venusqm"/>
             <iq:product id="vivoactive3"/>
             <iq:product id="vivoactive3d"/>
             <iq:product id="vivoactive3m"/>
@@ -36,7 +40,7 @@
             <iq:language>eng</iq:language>
         </iq:languages>
         <iq:barrels>
-            <iq:depends name="CGM" version="1.0.0"/>
+            <iq:depends name="Dexcom" version="1.0.0"/>
         </iq:barrels>
     </iq:application>
 </iq:manifest>

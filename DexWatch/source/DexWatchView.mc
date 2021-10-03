@@ -1,6 +1,5 @@
-using CGM.Dexcom as Dexcom;
+//using CGM.Dexcom as Dexcom;
 using Toybox.Application as App;
-//using CGM as Dexcom;
 using Toybox.System as Sys;
 using Toybox.Lang as Lang;
 using Toybox.Timer as Timer;
@@ -43,7 +42,6 @@ class DexWatchView extends Ui.View {
 	var m_sTime;
 	var m_elapsedMinutes;
 	var m_responseCode;
-	var m_alarm;
 	
 	var m_readTimer;
 	var m_updateTimer;
@@ -52,7 +50,6 @@ class DexWatchView extends Ui.View {
     function initialize() {
         m_bgMMOL = 0.0;
 		m_bgMGDL = 0;
-		m_alarm = false;
         
         View.initialize();
         if (System.getDeviceSettings().phoneConnected && !(m_username.equals("dexcom_account"))) {
@@ -260,6 +257,7 @@ class DexWatchView extends Ui.View {
     }
     
     function readResponse(data, responseCode) {
+    	//System.println("in readresponse: Data = " + data + " responseCode = " + responseCode); 
     	m_responseCode = responseCode;
     	if (m_responseCode == Dexcom.SUCCESS) {
     		if (data[0].hasKey("BG_mmol")) {m_bgMMOL = data[0]["BG_mmol"].toFloat();}
@@ -268,7 +266,7 @@ class DexWatchView extends Ui.View {
     		if (data[0].hasKey("Stime")) {m_sTime = data[0]["Stime"];}
     		
     		// Raise Alarm if BG below threshold
-    		if (m_bgMGDL != 0 &&  m_bgMGDL <= m_bgLow) {
+    		if (m_bgMGDL != 0 &&  m_alarm && m_bgMGDL <= m_bgLow) {
     			raiseAlarm();
     			m_alarmTimer.start( method(:clear), 15*1000, false ); // Display Alarm menu for 15s then hide it
     			
@@ -356,6 +354,7 @@ class DexWatchView extends Ui.View {
     	var m_height = dc.getHeight();
         var m_width = dc.getWidth();
         
+        System.println("Width: " + m_width + " Height: " + m_height);
         //set coordinates based on screen size
         if (m_width == 215) {
         	BG_X= (m_width / 2) + 20;
